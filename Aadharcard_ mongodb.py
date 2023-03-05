@@ -10,15 +10,14 @@ from PIL import Image,ImageFont,ImageDraw
 
 
 # Create a AAdhar Card
-def Create():
-  def Name():
+def Name():
       Name=input("Enter the Name: ").capitalize()
       F_Name=input("Enter the Father Name: ").capitalize()
       name = Name +' '+F_Name
       return name
    
     #DOB Function
-  def Dob():
+def Dob():
       DOB_f= re.compile(r'[0-3][0-9]-[0-1][0-2]-([1-2][0-9][0-9][0-9])')
       DOB=input("Enter the valid D-M-Y: " )
       if re.fullmatch(DOB_f,DOB):
@@ -26,7 +25,7 @@ def Create():
       else:
         print("invaild DOB")  
     #Gender Function  
-  def Gender():  
+def Gender():  
       gen="male","female","transgender"  
       gender=input("Ender the Gender: ")
 
@@ -38,7 +37,7 @@ def Create():
           print("invaild Gender")  
           
     #Education Function
-  def Education():
+def Education():
         print("""please select one option :
                   
                   1.NA
@@ -99,8 +98,9 @@ def Create():
               return Education 
         else:      
           print("invalid option")
-    #address      
-  def Address():
+    #address   
+    
+def Address():
       
           No= input("Enter the Door No: ").capitalize()
           street=input("Enter the street: ").capitalize()
@@ -117,7 +117,7 @@ def Create():
           }
           return address
     #Email
-  def Email(): 
+def Email(): 
       reg=re.compile(r'([a-zA-Z],{1,})*([0-9.-_])*[a-zA-Z0-9]+@([a-zA-Z]{2,5})+[.a-zA-Z]+')
       email=input("Enter the valid Mail-id: ")
       if re.fullmatch(reg,email):
@@ -125,7 +125,7 @@ def Create():
       else:
         print("mail-id not valid")    
 
-  def Profile_img():
+def Profile_img():
       picc = input("Enter the pic path: ")
       profile_img = Image.open(picc)#Image
       im_bytes = io.BytesIO() # to convert image into binary values
@@ -135,7 +135,7 @@ def Create():
           'image':im_bytes.getvalue()# to getvalues()
       }
       return pic
-  def Aadhar():
+def Aadhar():
       c=r.randint(2000,9999)
       d=r.randint(1000,9999)
       adh=(str(c)+'-'+str(d)+'-'+str(d))
@@ -143,11 +143,11 @@ def Create():
 
 
       records.create_index('Aadhar_Id',unique =True)
-  def Created_date():
+def Created_date():
       x=datetime.now()
       y=datetime.strftime(x,'%d/%m/%Y %H:%M')
       return y
-  def Renewal_date():
+def Renewal_date():
         z= datetime.now() + timedelta(days=1098)
         y=datetime.strftime(z,'%d/%m/%Y %H:%M')
         return y
@@ -156,7 +156,19 @@ def Create():
       "Address":Address(),"Email-id":Email(),"Pic":Profile_img(),"Created_date":Created_date(),"renewal_date":Renewal_date()}
 
   records.insert_one(a)
-# Updation in aadhar card
+
+def Create():
+    Aadhar()
+    Name()
+    Dob()
+    Gender()
+    Education()
+    Address()
+    Email()
+    Profile_img()
+    Created_date()
+    Renewal_date()
+  # Updation in aadhar card
 
 def Update():
   aadhar_num=input("Enter the valid aadhar number: ")
